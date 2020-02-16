@@ -1,125 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Plants>
     <Pelargonia>
-        <active>
-            <period season="gardening">
-                <startdate>
-                    <day></day>
-                    <month>04</month>
-                    <year></year>
-                </startdate>
-                <enddate>
-                    <day></day>
-                    <month>09</month>
-                    <year></year>
-                </enddate>
-                <weekday day="Monday">
-                    <hour>16</hour>
-                    <minute>30</minute>
-                    <second>00</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-                <weekday day="Wednesday">
-                    <hour>12</hour>
-                    <minute>00</minute>
-                    <second>0</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-                <weekday day="Saturday">
-                    <hour>18</hour>
-                    <minute>00</minute>
-                    <second>00</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-            </period>
-        </active>
-        <inactive>
-            <period season="offseason">
-                <startdate>
-                    <day></day>
-                    <month>11</month>
-                    <year></year>
-                </startdate>
-                <enddate>
-                    <day></day>
-                    <month>03</month>
-                    <year></year>
-                </enddate>
-            </period>
-            <period season="public holiday">
-                <startdate>
-                    <day>15</day>
-                    <month>08</month>
-                    <year></year>
-                </startdate>
-                <enddate>
-                    <day>15</day>
-                    <month>08</month>
-                    <year></year>
-                </enddate>
-
-            </period>
-        </inactive>
+        <period season="gardening" begin="2020-04-01" end="2020-09-30">            <!--yyyy-mm-dd-->
+            <weekday day="Monday">
+                <hour>16</hour>
+                <minute>30</minute>
+                <second>00</second>
+                <duration>00:00:30</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <weekday day="Wednesday">
+                <hour>12</hour>
+                <minute>00</minute>
+                <second>0</second>
+                <duration>00:00:30</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <weekday day="Monday">
+                <hour>08</hour>
+                <minute>30</minute>
+                <second>00</second>
+                <duration>00:01:00</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <weekday day="Saturday">
+                <hour>18</hour>
+                <minute>00</minute>
+                <second>00</second>
+                <duration>00:00:30</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <exception id="public holiday" begin="2020-08-15" end="2020-08-15"></exception>
+        </period>
     </Pelargonia>
-
     <Surfinia>
-        <active>
-            <period season="gardening">
-                <startdate>
-                    <day></day>
-                    <month>04</month>
-                    <year></year>
-                </startdate>
-                <enddate>
-                    <day></day>
-                    <month>09</month>
-                    <year></year>
-                </enddate>
-                <weekday day="Monday">
-                    <hour>16</hour>
-                    <minute>30</minute>
-                    <second>00</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-                <weekday day="Wednesday">
-                    <hour>12</hour>
-                    <minute>00</minute>
-                    <second>0</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-                <weekday day="Saturday">
-                    <hour>18</hour>
-                    <minute>00</minute>
-                    <second>00</second>
-                    <duration>00:00:30</duration>                    <!--hh:mm:ss-->
-                </weekday>
-            </period>
-        </active>
-        <inactive>
-            <period season="offseason">
-                <startdate>
-                    <day></day>
-                    <month>11</month>
-                    <year></year>
-                </startdate>
-                <enddate>
-                    <day></day>
-                    <month>03</month>
-                    <year></year>
-                </enddate>
-            </period>
-            <period season="vacation">
-                <startdate>
-                    <day>23</day>
-                    <month>06</month>
-                    <year>2020</year>
-                </startdate>
-                <enddate>
-                    <day>13</day>
-                    <month>07</month>
-                    <year>2020</year>
-                </enddate>
-            </period>
-        </inactive>
+        <period season="gardening" begin="2020-04-01" end="2020-10-30">            <!--yyyy-mm-dd-->
+            <weekday day="Monday">
+                <hour>15</hour>
+                <minute>00</minute>
+                <second>00</second>
+                <duration>00:02:00</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <weekday day="Saturday">
+                <hour>18</hour>
+                <minute>00</minute>
+                <second>00</second>
+                <duration>00:02:00</duration>                <!--hh:mm:ss-->
+            </weekday>
+            <exception id="summer break" begin="2020-08-15" end="2020-08-20"></exception>
+        </period>
     </Surfinia>
 </Plants>
