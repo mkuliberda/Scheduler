@@ -1,9 +1,13 @@
 from scheduler import *
 
-TEST_SCHEDULE_FILE_PATH = "test.xml"
+TEST1_SCHEDULE_FILE_PATH = "test1.xml"
+TEST2_SCHEDULE_FILE_PATH = "test2.xml"
+test_files = [TEST1_SCHEDULE_FILE_PATH, TEST2_SCHEDULE_FILE_PATH]
 
-plants_schedule = Scheduler(TEST_SCHEDULE_FILE_PATH)
-plants_schedule.printSchedule()
+
+plants_schedule = Scheduler(test_files)
+#plants_schedule.printSchedule()
 print (plants_schedule.isActive("Pelargonia"))
+print (plants_schedule.isActive("Surfinia"))
 
 print("done!")

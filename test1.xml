@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pelargonia>
+    <period id="gardening" begin="2020-04-01-00-00-00" end="2020-09-01-23-59-59">        <!--yyyy-mm-dd-hh-mm-ss-->
+        <weekday day="Monday">
+            <hour>16</hour>
+            <minute>30</minute>
+            <second>00</second>
+            <duration>00-00-30</duration>            <!--hh:mm:ss-->
+        </weekday>
+        <weekday day="Wednesday">
+            <hour>12</hour>
+            <minute>00</minute>
+            <second>0</second>
+            <duration>00-00-30</duration>            <!--hh:mm:ss-->
+        </weekday>
+        <weekday day="Monday">
+            <hour>08</hour>
+            <minute>30</minute>
+            <second>00</second>
+            <duration>00-01-00</duration>            <!--hh:mm:ss-->
+        </weekday>
+        <weekday day="Saturday">
+            <hour>18</hour>
+            <minute>00</minute>
+            <second>00</second>
+            <duration>00-00-30</duration>            <!--hh:mm:ss-->
+        </weekday>
+        <exception id="break1" begin="2020-08-15-00-00-00" end="2020-08-15-23-59-59"></exception>        <!--yyyy-mm-dd-hh-mm-ss-->
+    </period>
+</Pelargonia>
