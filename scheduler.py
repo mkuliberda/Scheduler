@@ -20,7 +20,7 @@ class Scheduler():
 
         print("Schedule files set to:")
         for i in self.files:
-            print (i)
+            print(i)
         
     def __exit__(self, exc_type, exc_value, traceback):
         print("Scheduler closing...")
@@ -57,7 +57,7 @@ class Scheduler():
         return True
 
     def print_schedule(self):
-        i=0
+        i = 0
         time_arr = []
         temp_dict = {"hour": 0, "min": 0, "sec": 0, "dur": 0}
         print("Current schedule is: ")
@@ -68,7 +68,7 @@ class Scheduler():
                 print(period.tag, period.attrib)
                 for days in period:
                     print(i, days.tag, days.attrib)
-                    i+=1
+                    i += 1
                     for hours in days:
                         print(hours.tag, hours.text)
                         temp_dict["hour"] = hours.text
