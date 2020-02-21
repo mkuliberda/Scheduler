@@ -11,12 +11,12 @@ class Scheduler():
         print("Scheduler starting...")
         self.files = []
         self.trees = []
-        if not isinstance(filepaths,list):
+        if not isinstance(filepaths, list):
             self.files = [filepaths]
         else:
             self.files = filepaths
 
-        self.readScheduleFile()
+        self.read_schedule_file()
 
         print("Schedule files set to:")
         for i in self.files:
@@ -25,25 +25,30 @@ class Scheduler():
     def __exit__(self, exc_type, exc_value, traceback):
         print("Scheduler closing...")
     
-    def changeScheduleFile(self, filepath, index):
+    def change_schedule_file(self, filepath, index):
         self.files[index] = filepath
         print("Schedule files changed to: ", self.files)
 
-    def addScheduleFile(self,filepath):
+    def add_schedule_file(self, filepath):
         self.files.append(filepath)
         print("Schedule file: ", self.filepath, "added to list")
 
-    def readScheduleFile(self):
+    def read_schedule_file(self):
         print("Importing and parsing schedule files...")
         for i in range(len(self.files)):
             tree = et.parse(self.files[i])
             self.trees.append(tree)
     
-    def parseXMLtoDF(self, rootTag):
+    def parse_xml_to_df(self, root_tag):
+        for element in self.trees:
+            if element.getroot().tag == root_tag:
+                print(element.getroot.tag())
+
+
         #TODO
         pass
 
-    def isActive(self, tag):
+    def is_active(self, tag):
         now = datetime.datetime.now()
         for element in self.trees:
             if element.getroot().tag == tag:
@@ -51,7 +56,7 @@ class Scheduler():
         #TODO: compare now to schedule
         return True
 
-    def printSchedule(self):
+    def print_schedule(self):
         i=0
         time_arr = []
         temp_dict = {"hour": 0, "min": 0, "sec": 0, "dur": 0}
