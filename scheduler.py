@@ -68,7 +68,7 @@ class Scheduler():
                     print("\t\t", weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
             for exception in element.iter("exception"):
                 print("\t", exception.tag, exception.attrib)
-            #print("------------------------Next schedule-----------------------")
+
 
 
 #scheduler1 = Scheduler()
