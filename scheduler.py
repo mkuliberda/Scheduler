@@ -1,7 +1,4 @@
-import pandas as pd
-import datetime
-import sys
-import os
+from datetime import datetime, timedelta
 import xml.etree.ElementTree as et
 
 
@@ -11,6 +8,7 @@ class Scheduler():
         print("Scheduler starting...")
         self.files = []
         self.trees = []
+ 
         if not isinstance(filepaths, list):
             self.files = [filepaths]
         else:
@@ -39,48 +37,60 @@ class Scheduler():
             tree = et.parse(self.files[i])
             self.trees.append(tree)
     
-    def parse_xml_to_df(self, root_tag):
-        for element in self.trees:
-            if element.getroot().tag == root_tag:
-                print(element.getroot.tag())
-
-
+    def is_exception(self, tag):
         #TODO
-        pass
+        return False
 
     def is_active(self, tag):
-        now = datetime.datetime.now()
+        now = datetime.now()
+        activate = False
         for element in self.trees:
             if element.getroot().tag == tag:
-                print(now, element.getroot().tag)
-        #TODO: compare now to schedule
-        return True
+                for period in element.iter("period"):
+                    if now > datetime.strptime(period.attrib["begin"], "%Y-%m-%d %H:%M:%S") and now < datetime.strptime(period.attrib["end"], "%Y-%m-%d %H:%M:%S") and self.is_exception(tag) is False:
+                        for weekday in period:
+                            if weekday.attrib["day"] == now.strftime("%A"):
+                                start_time = datetime.strptime(weekday[0].text, "%H:%M:%S")
+                                duration = datetime.strptime(weekday[1].text, "%H:%M:%S")
+                                end_time = start_time + timedelta(hours=duration.hour, minutes=duration.minute, seconds=duration.second)
+                                if now.time() >= start_time.time() and now.time() <= end_time.time():
+                                    activate = True
+                                    #print(start_time, duration, end_time)
+                                    #print(weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
 
-    def print_schedule(self):
-        i = 0
-        time_arr = []
-        temp_dict = {"hour": 0, "min": 0, "sec": 0, "dur": 0}
+        return activate
+
+    def print_full_schedule(self):
         print("Current schedule is: ")
-        print(self.root)
-        for plant in self.root:
-            print(plant.tag, plant.attrib)
-            for period in plant:
-                print(period.tag, period.attrib)
-                for days in period:
-                    print(i, days.tag, days.attrib)
-                    i += 1
-                    for hours in days:
-                        print(hours.tag, hours.text)
-                        temp_dict["hour"] = hours.text
-            #print(temp_dict)
-            print("------------------------Next plant-----------------------")
-        print("------------------------Second part-----------------------")
+        for element in self.trees:
+            print(element.getroot().tag, element.getroot().attrib)
+            for period in element.iter("period"):
+                print("\t", period.tag, period.attrib)
+                for weekday in period:
+                    print("\t\t", weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
+            for exception in element.iter("exception"):
+                print("\t", exception.tag, exception.attrib)
+            #print("------------------------Next schedule-----------------------")
+    
 
-        for period in self.root.iter("period"):
-            print(period.tag, period.attrib)
+
+        # for element in self.root:
+        #     print(plant.tag, plant.attrib)
+        #     for period in plant:
+        #         print(period.tag, period.attrib)
+        #         for days in period:
+        #             print(i, days.tag, days.attrib)
+        #             i += 1
+        #             for hours in days:
+        #                 print(hours.tag, hours.text)
+        #                 temp_dict["hour"] = hours.text
+        # print("------------------------Next file-----------------------")
+
+        # for period in self.root.iter("period"):
+        #     print(period.tag, period.attrib)
         
-        for weekday in self.root.iter("weekday"):
-            print(weekday.tag, weekday.attrib)
+        # for weekday in self.root.iter("weekday"):
+        #     print(weekday.tag, weekday.attrib)
             # temp_dict["hour"] = int(weekday.find("hour").text)
             # temp_dict["min"] = int(weekday.find("minute").text)
             # temp_dict["sec"] = int(weekday.find("second").text)
@@ -97,5 +107,5 @@ class Scheduler():
 
 #scheduler1 = Scheduler()
 
-#if __name__ == '__main__':
-#        scheduler1.printSchedule()
+# if __name__ == '__main__':
+#                      print("done")
