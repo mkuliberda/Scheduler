@@ -55,8 +55,6 @@ class Scheduler():
                                 end_time = start_time + timedelta(hours=duration.hour, minutes=duration.minute, seconds=duration.second)
                                 if now.time() >= start_time.time() and now.time() <= end_time.time():
                                     activate = True
-                                    #print(start_time, duration, end_time)
-                                    #print(weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
 
         return activate
 
@@ -71,38 +69,6 @@ class Scheduler():
             for exception in element.iter("exception"):
                 print("\t", exception.tag, exception.attrib)
             #print("------------------------Next schedule-----------------------")
-    
-
-
-        # for element in self.root:
-        #     print(plant.tag, plant.attrib)
-        #     for period in plant:
-        #         print(period.tag, period.attrib)
-        #         for days in period:
-        #             print(i, days.tag, days.attrib)
-        #             i += 1
-        #             for hours in days:
-        #                 print(hours.tag, hours.text)
-        #                 temp_dict["hour"] = hours.text
-        # print("------------------------Next file-----------------------")
-
-        # for period in self.root.iter("period"):
-        #     print(period.tag, period.attrib)
-        
-        # for weekday in self.root.iter("weekday"):
-        #     print(weekday.tag, weekday.attrib)
-            # temp_dict["hour"] = int(weekday.find("hour").text)
-            # temp_dict["min"] = int(weekday.find("minute").text)
-            # temp_dict["sec"] = int(weekday.find("second").text)
-            # temp_dict["dur"] = weekday.find("duration").text #todo duration parsing
-            #time_arr.append(temp_dict) 
-        #print(time_arr)
-        #for period in self.root.iter(period.iter):
-        #    print(period.attrib)
-        #print(self.tree.items())
-        #print(self.root.tag)
-        #print(self.root.items())
-        #print(self.root.keys())
 
 
 #scheduler1 = Scheduler()
