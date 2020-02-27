@@ -47,7 +47,7 @@ class Scheduler():
         for element in self.trees:
             if element.getroot().tag == tag:
                 for period in element.iter("period"):
-                    if now > datetime.strptime(period.attrib["begin"], "%Y-%m-%d %H:%M:%S") and now < datetime.strptime(period.attrib["end"], "%Y-%m-%d %H:%M:%S") and self.is_exception(tag) is False:
+                    if datetime.strptime(period.attrib["begin"], "%Y-%m-%d %H:%M:%S") < now < datetime.strptime(period.attrib["end"], "%Y-%m-%d %H:%M:%S") and self.is_exception(tag) is False:
                         for weekday in period:
                             if weekday.attrib["day"] == now.strftime("%A"):
                                 start_time = datetime.strptime(weekday[0].text, "%H:%M:%S")
@@ -68,6 +68,18 @@ class Scheduler():
                     print("\t\t", weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
             for exception in element.iter("exception"):
                 print("\t", exception.tag, exception.attrib)
+
+    def print_schedule_by_tag(self, tag):
+        print("Current ", tag, "\'s schedule is: ")
+        for element in self.trees:
+            if element.getroot().tag == tag:
+                print(element.getroot().tag, element.getroot().attrib)
+                for period in element.iter("period"):
+                    print("\t", period.tag, period.attrib)
+                    for weekday in period:
+                        print("\t\t", weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
+                for exception in element.iter("exception"):
+                    print("\t", exception.tag, exception.attrib)
 
 
 
