@@ -41,9 +41,9 @@ class Scheduler():
         #TODO
         return False
 
-    def is_active(self, tag):
+    def is_active_by_tag(self, tag):
+        active = False
         now = datetime.now()
-        activate = False
         for element in self.trees:
             if element.getroot().tag == tag:
                 for period in element.iter("period"):
@@ -53,10 +53,27 @@ class Scheduler():
                                 start_time = datetime.strptime(weekday[0].text, "%H:%M:%S")
                                 duration = datetime.strptime(weekday[1].text, "%H:%M:%S")
                                 end_time = start_time + timedelta(hours=duration.hour, minutes=duration.minute, seconds=duration.second)
-                                if now.time() >= start_time.time() and now.time() <= end_time.time():
-                                    activate = True
+                                if start_time.time() <= now.time() <= end_time.time():
+                                    active = True
 
-        return activate
+        return active
+
+    def is_active_all(self):
+        status_dict = {}
+        now = datetime.now()
+        for element in self.trees:
+            status_dict.update({element.getroot().tag : False})
+            for period in element.iter("period"):
+                if datetime.strptime(period.attrib["begin"], "%Y-%m-%d %H:%M:%S") < now < datetime.strptime(period.attrib["end"], "%Y-%m-%d %H:%M:%S") and self.is_exception(element.getroot().tag) is False:
+                    for weekday in period:
+                        if weekday.attrib["day"] == now.strftime("%A"):
+                            start_time = datetime.strptime(weekday[0].text, "%H:%M:%S")
+                            duration = datetime.strptime(weekday[1].text, "%H:%M:%S")
+                            end_time = start_time + timedelta(hours=duration.hour, minutes=duration.minute, seconds=duration.second)
+                            if start_time.time() <= now.time() <= end_time.time():
+                                status_dict[element.getroot().tag] = True
+
+        return status_dict
 
     def print_full_schedule(self):
         print("Current schedule is: ")
@@ -80,6 +97,9 @@ class Scheduler():
                         print("\t\t", weekday.tag, weekday.attrib, weekday[0].text, weekday[1].text)
                 for exception in element.iter("exception"):
                     print("\t", exception.tag, exception.attrib)
+    
+
+
 
 
 
