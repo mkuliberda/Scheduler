@@ -9,5 +9,6 @@ plants_schedule = Scheduler(test_files)
 #print(plants_schedule.is_active_by_tag("Pelargonia"))
 #print(plants_schedule.is_active_by_tag("Surfinia"))
 print(plants_schedule.is_active_all())
+print(plants_schedule.print_full_schedule())
 
 print("done!")
