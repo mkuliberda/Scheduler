@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import xml.etree.ElementTree as et
 
 
-class Scheduler():
+class Scheduler(object):
 
     def __init__(self, filepaths):
         print("Scheduler starting...")
