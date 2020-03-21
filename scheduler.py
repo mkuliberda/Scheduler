@@ -64,6 +64,15 @@ class Scheduler(object):
                                     active = True
         return active
 
+    def get_tags(self):
+        tags = []
+        for element in self.trees:
+            tags.append(element.getroot().tag)
+        return tags
+
+    def get_tags_amount(self):
+        return len(self.trees)
+
     def is_active_all(self):
         active_dict = {}
         now = datetime.now()
